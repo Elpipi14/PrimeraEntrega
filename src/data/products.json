@@ -1,0 +1,112 @@
+[
+  {
+    "title": "Nike I Tempo",
+    "description": "nuevo lanzamiento 2023",
+    "price": 750,
+    "thumbnail": "imagen1.jpg",
+    "category": "2023",
+    "code": "AB001",
+    "stock": 10,
+    "status": true,
+    "id": 1
+  },
+  {
+    "title": "Nike II",
+    "description": "lanzamiento retro",
+    "price": 1600,
+    "thumbnail": "imagen2.jpg",
+    "category": "2023",
+    "code": "AB002",
+    "stock": 10,
+    "status": true,
+    "id": 2
+  },
+  {
+    "title": "Nike slow Change",
+    "description": "tu mejor version",
+    "price": 700,
+    "thumbnail": "imagen3.jpg",
+    "category": "2023",
+    "code": "AB003",
+    "stock": 10,
+    "status": true,
+    "id": 3
+  },
+  {
+    "title": "Nike Dunk II",
+    "description": "Limited 2023",
+    "price": 700,
+    "thumbnail": "imagen4.jpg",
+    "category": "2023",
+    "code": "AB004",
+    "stock": 10,
+    "status": true,
+    "id": 4
+  },
+  {
+    "title": "Nike Dunk",
+    "description": "Nuevas zapas J23",
+    "price": 300,
+    "thumbnail": "imagen5.jpg",
+    "category": "2024",
+    "code": "AB005",
+    "stock": 10,
+    "status": true,
+    "id": 5
+  },
+  {
+    "title": "Nike Dunk I",
+    "description": "lanzamiento 2024",
+    "price": 4000,
+    "thumbnail": "imagen6.jpg",
+    "category": "2024",
+    "code": "AB006",
+    "stock": 10,
+    "status": true,
+    "id": 6
+  },
+  {
+    "title": "Nike Slam",
+    "description": "Runing",
+    "price": 1600,
+    "thumbnail": "imagen7.jpg",
+    "category": "2024",
+    "code": "AB007",
+    "stock": 10,
+    "status": true,
+    "id": 7
+  },
+  {
+    "title": "Nike Slam I",
+    "description": "nuevo lanzamiento",
+    "price": 1700,
+    "thumbnail": "imagen8.jpg",
+    "category": "2024",
+    "code": "AB008",
+    "stock": 10,
+    "status": true,
+    "id": 8
+  },
+  {
+    "title": "Jordan Air 23",
+    "description": "nuevo lanzamiento",
+    "price": 700,
+    "thumbnail": "imagen4.jpg",
+    "category": "2024",
+    "code": "AB009",
+    "stock": 10,
+    "status": true,
+    "id": 9
+  },
+  {
+    "id": 10,
+    "status": true,
+    "title": "Jordan Air Red Line",
+    "description": "nuevo lanzamiento",
+    "price": 1700,
+    "thumbnail": "imagen4.jpg",
+    "category": "2024",
+    "code": "AB010",
+    "stock": 10
+  }
+]
