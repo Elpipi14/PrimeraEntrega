@@ -4,7 +4,7 @@ socketClient.on('saludo desde back', (msg) => {
     console.log(msg);
 });
 
-
+//elementos del formulario y de la lista de productos en el DOM
 const form = document.getElementById('form');
 
 const inputId = document.getElementById('id');
@@ -18,9 +18,11 @@ const inputCategory = document.getElementById('category');
 
 const productList = document.getElementById('home');
 
-
+// Manejar el evento de envío del formulario
 form.onsubmit = (e) => {
+    // Evitar el comportamiento por defecto del formulario (enviar los datos y recargar la página)
     e.preventDefault()
+    //campos del formulario
     const id = inputId.value;
     const title = inputTitle.value;
     const description = inputDescription.value;
@@ -29,19 +31,24 @@ form.onsubmit = (e) => {
     const thumbnail = inputThumbnail.value;
     const code = inputCode.value;
     const category = inputCategory.value;
+    // Crear un objeto que representa el nuevo producto
     const product = { id, title, description, price, stock,thumbnail, code, category };
+     // Envia un evento al servidor con los datos del nuevo producto
     socketClient.emit('newProducts', product);
 }
 
-
+// Manejar el evento delete
 document.addEventListener('click', (event) => {
+    // Verificar si el elemento clickeado tiene la clase 'delete'
     if (event.target.classList.contains('delete')) {
+        // Obtener el ID del producto a eliminar desde el atributo 'id' del botón
         const productId = event.target.getAttribute('id');
+         // Envia un evento al servidor para eliminar el producto
         socketClient.emit('deleteProduct', productId);
     }
 });
 
-
+// Manejar la actualización de la lista de productos recibida desde el servidor
 socketClient.on('arrayProducts', (updatedProducts) => {
     console.log(updatedProducts); // Verifica los productos recibidos en la consola
     let productListHTML = ``;
@@ -65,6 +72,7 @@ socketClient.on('arrayProducts', (updatedProducts) => {
             `
     });
     console.log(productListHTML);
+     // Actualizar el contenido del elemento HTML 
     productList.innerHTML = productListHTML;
 });
 
