@@ -51,8 +51,7 @@ const productsManager = new ProductManager();
 
 io.on('connection', (socket) => {
     console.log(`Usuario Conectado ${socket.id}`);
-    socket.on('disconnect', () => console.log(`Usuario desconectado`));
-
+    socket.on('disconnect', () => console.log(`Usuario desconectado ${socket.id}`));
 
     socket.on('newProducts', async (product) => {
         await productsManager.addProduct(product);
