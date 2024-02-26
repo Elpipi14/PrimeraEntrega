@@ -15,4 +15,24 @@ routerViews.get('/', async (req, res) => {
     }
 });
 
+routerViews.get('/products', async (req, res) => {
+    try {
+        res.render('productsRealTime');
+    } catch (error) {
+        console.error('Error al obtener productos:', error.message);
+        res.status(500).send('Error interno del servidor');
+    }
+});
+
+
+routerViews.get('/contact', async (req, res) => {
+    try {
+        res.render('contact');
+    } catch (error) {
+        console.error('Error al obtener productos:', error.message);
+        res.status(500).send('Error interno del servidor');
+    }
+});
+
+
 export default routerViews;

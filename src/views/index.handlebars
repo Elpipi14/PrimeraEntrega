@@ -3,6 +3,7 @@
 <div id="home">
     {{#each products}}
     <div class="card vist" style="width: 18rem;">
+        <img src="{{this.thumbnail}}" class="mx-auto img-thumbnail img" alt="">
         <div class="card_info card-body">
             <p class="card-text">{{this.title}}</p>
             <p class="card-text">Price: {{this.price}}</p>

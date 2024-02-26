@@ -1,0 +1,43 @@
+  <div class="list_container">
+         <h1 class="title">Socket.io Products Ecommerce</h1>
+        <h2 class="title">Add Product</h2>
+        <form id="form" action="procesar_producto.php" method="post" enctype="multipart/form-data">
+            <div class="data">
+                <label for="title">ID:</label>
+                <input type="text" name="id" id="id" required>
+                
+                <label for="title">TITLE:</label>
+                <input type="text" name="title" id="title" required>
+
+                <label for="title">DESCRIPTION:</label>
+                <input type="text" name="description" id="description" required>
+
+                <label for="price">PRICE:</label>
+                <input type="number" name="price" id="price" required>
+
+                <label for="category">CATEGORY:</label>
+                <input type="text" name="category" id="category" required>
+
+                <label for="stock">STOCK:</label>
+                <input type="number" name="stock" id="stock" required>
+
+                <label for="thumbnail">URL IMG:</label>
+                <input type="url" name="thumbnail" id="thumbnail" required>
+
+                <label for="stock">Code:</label>
+                <input type="text" name="code" id="code" required>
+                
+                <br></br>
+                <input type="submit" value="ADD PRODUCT">
+            </div>
+        </form>
+    </div>
+
+    <h2 class="title">List Products</h2>
+
+    <div id="home">
+
+    </div>
+
+<script src="https://cdn.socket.io/4.7.3/socket.io.min.js" integrity="sha384-+miq58Ltmjm+SSP5g8Ok6dpMO/6R4n8xe/x1Yj0Bdb9kiEz25LTnWv/GZQTRQamg" crossorigin="anonymous"></script>
+<script src="js/main.js"></script>
