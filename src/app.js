@@ -24,7 +24,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //config handlebars: express busca archivos .handelbars y lo renderize
-//decimo a express que use el motor de plantilla:
+//le decimos a express que use el motor de plantilla:
 app.engine("handlebars", exphbs.engine());
 app.set("view engine", "handlebars");
 app.set("views", "./src/views");
@@ -72,7 +72,7 @@ io.on('connection', (socket) => {
 
 
 
-
+//aplicando multer
 //generea y configuracion de formato y nombre original
 //callback 2 prop. destination y filename
 // const storage = multer.diskStorage({
