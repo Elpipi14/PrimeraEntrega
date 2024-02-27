@@ -40,7 +40,7 @@ form.onsubmit = (e) => {
             Swal.fire({
                 icon: 'success',
                 title: 'Éxito',
-                text: 'Producto agregado correctamente'
+                text: 'Product added successfully'
             });
         } else {
             // Mostrar alerta de error con el mensaje específico
@@ -70,12 +70,12 @@ document.addEventListener('click', async (event) => {
                 text: 'Producto eliminado correctamente'
             });
         } catch (error) {
-            console.error("Error al eliminar el producto:", error);
+            console.error("Error deleting product:", error);
             // Mostrar alerta de error en caso de error durante la eliminación
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
-                text: 'Se produjo un error al eliminar el producto'
+                text: 'An error occurred while deleting the product'
             });
         }
     }

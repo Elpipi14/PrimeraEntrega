@@ -65,7 +65,7 @@ io.on('connection', (socket) => {
             callback({ success: true });
         } catch (error) {
             console.error("Error adding product:", error);
-            callback({ error: true, message: "Producto con el mismo código ya existe" });
+            callback({ error: true, message: "Product with the same code already exists" });
 
         }
     });
