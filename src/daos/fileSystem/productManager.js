@@ -17,10 +17,10 @@ export class ProductManager {
             // Leer productos existentes
             let products = await this.getAllFileProducts();
 
-            // Validar que no se repita el campo "code"
-            if (products.some(existingProduct => existingProduct.code === product.code)) {
-                console.log("A product with the same code already exists");
-                throw new Error("A product with the same code already exists");
+            // Validar que no se repita el campo "code" o "mismo id"
+            if (products.some(existingProduct => existingProduct.code === product.code || existingProduct.id === product.id)) {
+                console.log("A product with the same code or id already exists");
+                return { error: true, message: "A product with the same code already exists" }; // No arrojar una excepción, solo devolver un mensaje al cliente
             }
 
             // Encontrar el máximo ID actual
@@ -86,7 +86,7 @@ export class ProductManager {
             let products = await this.getAllFileProducts();
             const index = products.findIndex(product => product.id === id);
             // Validar que no se repita el campo "code" o "id"
-            if (products.some(existingProduct => existingProduct.code === updatedProduct.code || existingProduct.id === updatedProduct.id )) {
+            if (products.some(existingProduct => existingProduct.code === updatedProduct.code || existingProduct.id === updatedProduct.id)) {
                 console.log("A product with the same code or id already exists");
                 throw new Error("A product with the same code or id already exists");
             };

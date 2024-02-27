@@ -32,19 +32,52 @@ form.onsubmit = (e) => {
     const code = inputCode.value;
     const category = inputCategory.value;
     // Crear un objeto que representa el nuevo producto
-    const product = { id, title, description, price, stock,thumbnail, code, category };
-     // Envia un evento al servidor con los datos del nuevo producto
-    socketClient.emit('newProducts', product);
+    const product = { id, title, description, price, stock, thumbnail, code, category };
+    // Envia un evento al servidor con los datos del nuevo producto
+    socketClient.emit('newProducts', product, (response) => {
+        if (response.success) {
+            // Mostrar alerta de éxito
+            Swal.fire({
+                icon: 'success',
+                title: 'Éxito',
+                text: 'Producto agregado correctamente'
+            });
+        } else {
+            // Mostrar alerta de error con el mensaje específico
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: "A product with the same code or id already exists"
+            });
+        }
+    });
 }
 
 // Manejar el evento delete
-document.addEventListener('click', (event) => {
+document.addEventListener('click', async (event) => {
     // Verificar si el elemento clickeado tiene la clase 'delete'
     if (event.target.classList.contains('delete')) {
-        // Obtener el ID del producto a eliminar desde el atributo 'id' del botón
-        const productId = event.target.getAttribute('id');
-         // Envia un evento al servidor para eliminar el producto
-        socketClient.emit('deleteProduct', productId);
+        try {
+            // Obtener el ID del producto a eliminar desde el atributo 'id' del botón
+            const productId = event.target.getAttribute('id');
+            // Enviar un evento al servidor para eliminar el producto
+            await socketClient.emit('deleteProduct', productId);
+
+            // Mostrar alerta de éxito
+            Swal.fire({
+                icon: 'success',
+                title: 'Éxito',
+                text: 'Producto eliminado correctamente'
+            });
+        } catch (error) {
+            console.error("Error al eliminar el producto:", error);
+            // Mostrar alerta de error en caso de error durante la eliminación
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Se produjo un error al eliminar el producto'
+            });
+        }
     }
 });
 
@@ -72,7 +105,7 @@ socketClient.on('arrayProducts', (updatedProducts) => {
             `
     });
     console.log(productListHTML);
-     // Actualizar el contenido del elemento HTML 
+    // Actualizar el contenido del elemento HTML 
     productList.innerHTML = productListHTML;
 });
 

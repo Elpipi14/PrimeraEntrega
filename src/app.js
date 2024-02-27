@@ -42,6 +42,7 @@ const httpServer = app.listen(PORT, () => {
     console.log(`escuchando al puerto ${PORT}`);
 });
 
+//aplicando Web_Socket
 //socket configuracion
 const io = new Server(httpServer);
 
@@ -53,19 +54,34 @@ io.on('connection', (socket) => {
     console.log(`connected client ${socket.id}`);
     socket.on('disconnect', () => console.log(`client disconnect ${socket.id}`));
 
-    socket.on('newProducts', async (product) => {
-        await productsManager.addProduct(product);
-        console.log("Producto agregado:", product);
-        const updatedProducts = await productsManager.getProducts();
-        // console.log("Productos actualizados:", updatedProducts);
-        io.emit('arrayProducts', updatedProducts);
+    socket.on('newProducts', async (product, callback) => {
+        try {
+            await productsManager.addProduct(product);
+            console.log("Producto agregado:", product);
+            const updatedProducts = await productsManager.getProducts();
+            // console.log("Productos actualizados:", updatedProducts);
+            io.emit('arrayProducts', updatedProducts);
+            // Enviar respuesta al cliente indicando que la operación fue exitosa
+            callback({ success: true });
+        } catch (error) {
+            console.error("Error adding product:", error);
+            callback({ error: true, message: "Producto con el mismo código ya existe" });
+
+        }
     });
 
     socket.on('deleteProduct', async (productId) => {
-        await productsManager.deleteProduct(productId);
-        const updatedProducts = await productsManager.getProducts();
-        // console.log("Productos actualizados:", updatedProducts);
-        io.emit('arrayProducts', updatedProducts);
+        try {
+            await productsManager.deleteProduct(productId);
+            const updatedProducts = await productsManager.getProducts();
+            // Emitir la lista actualizada de productos a todos los clientes
+            io.emit('arrayProducts', updatedProducts);
+            // Enviar una respuesta al cliente indicando que la operación fue exitosa
+            socket.emit('deleteProductSuccess', { success: true });
+        } catch (error) {
+            console.error("Error deleting product:", error);
+            socket.emit('deleteProductError', { error: true, message: error.message });
+        }
     });
 });
 
