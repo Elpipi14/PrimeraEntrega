@@ -41,6 +41,16 @@ form.onsubmit = (e) => {
                 title: 'success',
                 text: 'Product added successfully'
             });
+            // una vez que se agregue el producto blanquea los campos
+            inputId.value = '';
+            inputTitle.value = '';
+            inputDescription.value = '';
+            inputPrice.value = '';
+            inputStock.value = '';
+            inputThumbnail.value = '';
+            inputCode.value = '';
+            inputCategory.value = '';
+
         } else {
             Swal.fire({
                 icon: 'error',

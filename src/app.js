@@ -63,7 +63,6 @@ io.on('connection', (socket) => {
             // console.log("Productos actualizados:", updatedProducts);
             io.emit('arrayProducts', productsUp);
             callback({ success: true });
-            socket.emit('Product added successfully', { success: true });
         } catch (error) {
             console.error("Error adding product:", error);
             callback({ error: true, message: "Product with the same code already exists" });
