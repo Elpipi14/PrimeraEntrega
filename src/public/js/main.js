@@ -67,7 +67,7 @@ document.addEventListener('click', async (event) => {
             Swal.fire({
                 icon: 'success',
                 title: 'success',
-                text: 'Product disposed correctly'
+                text: 'product deleted successfully'
             });
         } catch (error) {
             console.error("Error deleting product:", error);
