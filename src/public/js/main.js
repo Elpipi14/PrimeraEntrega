@@ -36,14 +36,12 @@ form.onsubmit = (e) => {
     // Envia un evento al servidor con los datos del nuevo producto
     socketClient.emit('newProducts', product, (response) => {
         if (response.success) {
-            // Mostrar alerta de éxito
             Swal.fire({
                 icon: 'success',
                 title: 'success',
                 text: 'Product added successfully'
             });
         } else {
-            // Mostrar alerta de error con el mensaje específico
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
@@ -62,8 +60,6 @@ document.addEventListener('click', async (event) => {
             const productId = event.target.getAttribute('id');
             // Enviar un evento al servidor para eliminar el producto
             await socketClient.emit('deleteProduct', productId);
-
-            // Mostrar alerta de éxito
             Swal.fire({
                 icon: 'success',
                 title: 'success',
@@ -71,7 +67,6 @@ document.addEventListener('click', async (event) => {
             });
         } catch (error) {
             console.error("Error deleting product:", error);
-            // Mostrar alerta de error en caso de error durante la eliminación
             Swal.fire({
                 icon: 'error',
                 title: 'Error',

@@ -62,7 +62,6 @@ io.on('connection', (socket) => {
             const productsUp = updatedProducts.filter((product) => product.status === true)
             // console.log("Productos actualizados:", updatedProducts);
             io.emit('arrayProducts', productsUp);
-            // Enviar respuesta al cliente indicando que la operación fue exitosa
             callback({ success: true });
             socket.emit('Product added successfully', { success: true });
         } catch (error) {
@@ -79,7 +78,6 @@ io.on('connection', (socket) => {
             const productsUp = updatedProducts.filter((product) => product.status === true)
             // Emitir la lista actualizada de productos a todos los clientes
             io.emit('arrayProducts', productsUp);
-            // Enviar una respuesta al cliente indicando que la operación fue exitosa
             socket.emit('deleteProductSuccess', { success: true });
         } catch (error) {
             console.error("Error deleting product:", error);
