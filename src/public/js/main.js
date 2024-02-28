@@ -39,7 +39,7 @@ form.onsubmit = (e) => {
             // Mostrar alerta de éxito
             Swal.fire({
                 icon: 'success',
-                title: 'Éxito',
+                title: 'success',
                 text: 'Product added successfully'
             });
         } else {
@@ -66,8 +66,8 @@ document.addEventListener('click', async (event) => {
             // Mostrar alerta de éxito
             Swal.fire({
                 icon: 'success',
-                title: 'Éxito',
-                text: 'Producto eliminado correctamente'
+                title: 'success',
+                text: 'Product disposed correctly'
             });
         } catch (error) {
             console.error("Error deleting product:", error);
