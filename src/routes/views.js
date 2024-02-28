@@ -7,8 +7,9 @@ const productsManager = new ProductManager();
 routerViews.get('/', async (req, res) => {
     try {
         const products = await productsManager.getProducts();
+        const productsView = products.filter((product) => product.status == true)
         // console.log(products);
-        res.render('index', { products });
+        res.render('index', { productsView });
     } catch (error) {
         console.error('Error al obtener productos:', error.message);
         res.status(500).send('Error interno del servidor');

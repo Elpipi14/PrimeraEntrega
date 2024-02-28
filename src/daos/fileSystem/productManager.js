@@ -18,7 +18,7 @@ export class ProductManager {
             let products = await this.getAllFileProducts();
 
             // Validar que no se repita el campo "code" o "mismo id"
-            if (products.some(existingProduct => existingProduct.code === product.code || existingProduct.id === product.id)) {
+            if (products.some(existingProduct => existingProduct.code === product.code || existingProduct.id == product.id)) {
                 console.log("A product with the same code or id already exists");
                 return { error: true, message: "A product with the same code already exists" }; // No arrojar una excepción, solo devolver un mensaje al cliente
             }
@@ -75,7 +75,7 @@ export class ProductManager {
                 throw new Error("Product not found");
             }
         } catch (error) {
-            console.error("Error getting product by ID:", error);
+            console.error("Error getting product by ID", error);
             throw error;
         }
     };

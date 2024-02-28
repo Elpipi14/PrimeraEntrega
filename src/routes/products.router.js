@@ -9,15 +9,16 @@ const productsManager = new ProductManager();
 routerProducts.get("/", async (req, res) => {
     try {
         let limit = req.query.limit;
-        let products;
+        //trae los productos
+        const products = await productsManager.getProducts();
+        //Filtra por disponible
+        let productsView = products.filter((product) => product.status === true);
         if (limit) {
-            products = (await productsManager.getProducts()).slice(0, limit);
-        } else {
-            products = await productsManager.getProducts();
+            productsView = productsView.slice(0, limit); // Si hay límite, aplicamos el límite a los productos filtrados
         }
-        res.send(products);
+        res.send(productsView); // Enviamos la respuesta después de haber filtrado los productos
     } catch (error) {
-        console.log(error);
+        console.error(error);
         res.status(500).send({ status: 500, message: "Internal Server Error" });
     }
 });
@@ -26,10 +27,19 @@ routerProducts.get("/", async (req, res) => {
 routerProducts.get("/:id", async (req, res) => {
     try {
         let id = req.params.id;
-        const products = await productsManager.getProductById(id);
-        res.send(products);
+        const product = await productsManager.getProductById(id);
+        
+        if (!product) {
+            return res.status(404).json({ status: "error", message: "Product not found" });
+        }
+        
+        if (!product.status) {
+            return res.status(404).json({ status: "error", message: "Product is not active" });
+        }
+
+        res.send(product);
     } catch (error) {
-        res.status(404).json({ status: "error", message: error.message });
+        res.status(500).json({ status: "error", message: "Product not found" });
     }
 });
 

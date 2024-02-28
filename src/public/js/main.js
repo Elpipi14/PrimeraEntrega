@@ -23,7 +23,7 @@ form.onsubmit = (e) => {
     // Evitar el comportamiento por defecto del formulario (enviar los datos y recargar la página)
     e.preventDefault()
     //campos del formulario
-    const id = inputId.value;
+    const id = parseFloat(inputId.value);
     const title = inputTitle.value;
     const description = inputDescription.value;
     const price = inputPrice.value;

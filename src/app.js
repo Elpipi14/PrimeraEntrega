@@ -57,12 +57,14 @@ io.on('connection', (socket) => {
     socket.on('newProducts', async (product, callback) => {
         try {
             await productsManager.addProduct(product);
-            console.log("Producto agregado:", product);
+            // console.log("Producto agregado:", product);
             const updatedProducts = await productsManager.getProducts();
+            const productsUp = updatedProducts.filter((product) => product.status === true)
             // console.log("Productos actualizados:", updatedProducts);
-            io.emit('arrayProducts', updatedProducts);
+            io.emit('arrayProducts', productsUp);
             // Enviar respuesta al cliente indicando que la operación fue exitosa
             callback({ success: true });
+            socket.emit('Product added successfully', { success: true });
         } catch (error) {
             console.error("Error adding product:", error);
             callback({ error: true, message: "Product with the same code already exists" });
@@ -72,10 +74,11 @@ io.on('connection', (socket) => {
 
     socket.on('deleteProduct', async (productId) => {
         try {
-            await productsManager.deleteProduct(productId);
+            await productsManager.deleteProduct(parseFloat(productId));
             const updatedProducts = await productsManager.getProducts();
+            const productsUp = updatedProducts.filter((product) => product.status === true)
             // Emitir la lista actualizada de productos a todos los clientes
-            io.emit('arrayProducts', updatedProducts);
+            io.emit('arrayProducts', productsUp);
             // Enviar una respuesta al cliente indicando que la operación fue exitosa
             socket.emit('deleteProductSuccess', { success: true });
         } catch (error) {
